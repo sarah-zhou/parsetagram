@@ -14,6 +14,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var invalidView: UIView!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     
     @IBAction func onSignIn(sender: AnyObject) {
         PFUser.logInWithUsernameInBackground(usernameField.text!, password: passwordField.text!) { (user: PFUser?, error: NSError?) -> Void in
@@ -21,7 +23,7 @@ class LoginViewController: UIViewController {
             if user != nil {
                 print("Logged in successfully")
                 self.invalidView.hidden = true
-                self.performSegueWithIdentifier("loginSegue", sender: nil)
+                self.performSegueWithIdentifier("loggedInSegue", sender: nil)
             }
         
             if error?.code == 101 {
@@ -34,8 +36,18 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.sendSubviewToBack(backgroundImageView)
         invalidView.hidden = true
-        // Do any additional setup after loading the view.
+        
+        usernameField.attributedPlaceholder = NSAttributedString(string:"Username",
+                                                              attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
+        passwordField.attributedPlaceholder = NSAttributedString(string:"Password",
+                                                                 attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
+        
+        loginButton.backgroundColor = UIColor.clearColor()
+        loginButton.layer.borderWidth = 1.0
+        loginButton.layer.borderColor = UIColor(white: 1.0, alpha: 0.5).CGColor
+        loginButton.layer.cornerRadius = 5.0
     }
 
     override func didReceiveMemoryWarning() {

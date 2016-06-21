@@ -14,6 +14,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var usernameTakenView: UIView!
+    @IBOutlet weak var signupButton: UIButton!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     
     @IBAction func onSignUp(sender: AnyObject) {
         // initialize a user object
@@ -27,15 +29,14 @@ class SignUpViewController: UIViewController {
         newUser.signUpInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
             if success {
                 print("Created a user")
-                self.usernameTakenView.hidden = false
-                self.performSegueWithIdentifier("loginSegue", sender: nil)
+                self.usernameTakenView.hidden = true
+                self.performSegueWithIdentifier("loggedInSegue", sender: nil)
             } else {
                 print(error?.localizedDescription)
                 if error?.code == 202 {
                     print("Username is taken")
                     self.usernameTakenView.hidden = false
                 }
-                // manually segue to logged in view
             }
         }
     }
@@ -43,8 +44,18 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        usernameTakenView.hidden = true 
-        // Do any additional setup after loading the view.
+        view.sendSubviewToBack(backgroundImageView)
+        usernameTakenView.hidden = true
+        
+        usernameField.attributedPlaceholder = NSAttributedString(string:"Username",
+                                                                 attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
+        passwordField.attributedPlaceholder = NSAttributedString(string:"Password",
+                                                                 attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
+        
+        signupButton.backgroundColor = UIColor.clearColor()
+        signupButton.layer.borderWidth = 1.0
+        signupButton.layer.borderColor = UIColor(white: 1.0, alpha: 0.5).CGColor
+        signupButton.layer.cornerRadius = 5.0
     }
 
     override func didReceiveMemoryWarning() {
