@@ -13,7 +13,6 @@ import ParseUI
 class UploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
     @IBOutlet weak var uploadImageView: UIImageView!
-    
     @IBOutlet weak var captionTextView: UITextView!
     
     let imagePicker = UIImagePickerController()
@@ -37,7 +36,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         captionTextView.delegate = self
 
-        captionTextView.text = "Insert funny, witty, adorable, or meaningful caption here"
+        captionTextView.text = "Funny, witty, adorable, or meaningful caption here"
         captionTextView.textColor = UIColor.lightGrayColor()
         
         imagePicker.delegate = self
@@ -106,51 +105,4 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     */
 
-}
-
-class Post: NSObject {
-    /**
-     * Other methods
-     */
-    
-    /**
-     Method to add a user post to Parse (uploading image file)
-     
-     - parameter image: Image that the user wants upload to parse
-     - parameter caption: Caption text input by the user
-     - parameter completion: Block to be executed after save operation is complete
-     */
-    
-    class func postUserImage(image: UIImage?, withCaption caption: String?, withCompletion completion: PFBooleanResultBlock?) {
-        // Create Parse object PFObject
-        let post = PFObject(className: "Post")
-        
-        // Add relevant fields to the object
-        post["media"] = getPFFileFromImage(image) // PFFile column type
-        post["author"] = PFUser.currentUser() // Pointer column type that points to PFUser
-        post["caption"] = caption
-        post["likesCount"] = 0
-        post["commentsCount"] = 0
-        
-        // Save object (following function will save the object in Parse asynchronously)
-        post.saveInBackgroundWithBlock(completion)
-    }
-    
-    /**
-     Method to convert UIImage to PFFile
-     
-     - parameter image: Image that the user wants to upload to parse
-     
-     - returns: PFFile for the the data in the image
-     */
-    class func getPFFileFromImage(image: UIImage?) -> PFFile? {
-        // check if image is not nil
-        if let image = image {
-            // get image data and check if that is not nil
-            if let imageData = UIImagePNGRepresentation(image) {
-                return PFFile(name: "image.png", data: imageData)
-            }
-        }
-        return nil
-    }
 }

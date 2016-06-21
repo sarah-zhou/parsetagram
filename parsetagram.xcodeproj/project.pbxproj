@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		395F4B9AFC5FED8773E0164C /* Pods_parsetagramUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26EADD658A7DF80599BEFC2B /* Pods_parsetagramUITests.framework */; };
 		3EC795321D18C83D007535BC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC795311D18C83D007535BC /* SignUpViewController.swift */; };
+		3ECDF0791D19B1060083AC57 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECDF0781D19B1060083AC57 /* Post.swift */; };
+		3EF891981D1927A700B14F9A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF891971D1927A700B14F9A /* HomeViewController.swift */; };
+		3EF8919A1D1927C200B14F9A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF891991D1927C200B14F9A /* ProfileViewController.swift */; };
+		3EF8919C1D1927D100B14F9A /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF8919B1D1927D100B14F9A /* UploadViewController.swift */; };
 		3EFDE3FA1D188B3B00C5458C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFDE3F91D188B3B00C5458C /* AppDelegate.swift */; };
 		3EFDE3FC1D188B3B00C5458C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFDE3FB1D188B3B00C5458C /* ViewController.swift */; };
 		3EFDE3FF1D188B3B00C5458C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EFDE3FD1D188B3B00C5458C /* Main.storyboard */; };
@@ -17,9 +21,6 @@
 		3EFDE40F1D188B3B00C5458C /* parsetagramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFDE40E1D188B3B00C5458C /* parsetagramTests.swift */; };
 		3EFDE41A1D188B3B00C5458C /* parsetagramUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFDE4191D188B3B00C5458C /* parsetagramUITests.swift */; };
 		3EFDE4281D18913900C5458C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFDE4271D18913900C5458C /* LoginViewController.swift */; };
-		3EFDE42A1D189E0900C5458C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFDE4291D189E0900C5458C /* ProfileViewController.swift */; };
-		3EFDE42C1D189E4C00C5458C /* UploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFDE42B1D189E4C00C5458C /* UploadViewController.swift */; };
-		3EFDE42E1D189EAB00C5458C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFDE42D1D189EAB00C5458C /* HomeViewController.swift */; };
 		3EFDE4311D18B8EF00C5458C /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EFDE4301D18B8EF00C5458C /* PhotoCell.swift */; };
 		442FF11AA5B23FB512BF9149 /* Pods_parsetagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 227A3DA2B917D61BDB04AA8E /* Pods_parsetagram.framework */; };
 		A34947D0FF838FF97F2EAE07 /* Pods_parsetagramTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5D79CD7E6627095B30E70B /* Pods_parsetagramTests.framework */; };
@@ -47,6 +48,10 @@
 		227A3DA2B917D61BDB04AA8E /* Pods_parsetagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parsetagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26EADD658A7DF80599BEFC2B /* Pods_parsetagramUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parsetagramUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EC795311D18C83D007535BC /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		3ECDF0781D19B1060083AC57 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		3EF891971D1927A700B14F9A /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		3EF891991D1927C200B14F9A /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		3EF8919B1D1927D100B14F9A /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadViewController.swift; sourceTree = "<group>"; };
 		3EFDE3F61D188B3B00C5458C /* parsetagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = parsetagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EFDE3F91D188B3B00C5458C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3EFDE3FB1D188B3B00C5458C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -61,9 +66,6 @@
 		3EFDE4191D188B3B00C5458C /* parsetagramUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = parsetagramUITests.swift; sourceTree = "<group>"; };
 		3EFDE41B1D188B3B00C5458C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3EFDE4271D18913900C5458C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		3EFDE4291D189E0900C5458C /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../ProfileViewController.swift; sourceTree = "<group>"; };
-		3EFDE42B1D189E4C00C5458C /* UploadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UploadViewController.swift; path = ../UploadViewController.swift; sourceTree = "<group>"; };
-		3EFDE42D1D189EAB00C5458C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HomeViewController.swift; path = ../HomeViewController.swift; sourceTree = "<group>"; };
 		3EFDE4301D18B8EF00C5458C /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		47E84B3161BF20B65573B96B /* Pods-parsetagramTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parsetagramTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-parsetagramTests/Pods-parsetagramTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6F5D79CD7E6627095B30E70B /* Pods_parsetagramTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parsetagramTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,9 +161,10 @@
 			isa = PBXGroup;
 			children = (
 				3EC795311D18C83D007535BC /* SignUpViewController.swift */,
-				3EFDE42D1D189EAB00C5458C /* HomeViewController.swift */,
-				3EFDE4291D189E0900C5458C /* ProfileViewController.swift */,
-				3EFDE42B1D189E4C00C5458C /* UploadViewController.swift */,
+				3EF891971D1927A700B14F9A /* HomeViewController.swift */,
+				3EF891991D1927C200B14F9A /* ProfileViewController.swift */,
+				3EF8919B1D1927D100B14F9A /* UploadViewController.swift */,
+				3ECDF0781D19B1060083AC57 /* Post.swift */,
 				3EFDE4271D18913900C5458C /* LoginViewController.swift */,
 				3EFDE3FB1D188B3B00C5458C /* ViewController.swift */,
 			);
@@ -456,11 +459,12 @@
 				3EFDE4311D18B8EF00C5458C /* PhotoCell.swift in Sources */,
 				3EFDE4281D18913900C5458C /* LoginViewController.swift in Sources */,
 				3EC795321D18C83D007535BC /* SignUpViewController.swift in Sources */,
-				3EFDE42C1D189E4C00C5458C /* UploadViewController.swift in Sources */,
+				3EF8919C1D1927D100B14F9A /* UploadViewController.swift in Sources */,
 				3EFDE3FC1D188B3B00C5458C /* ViewController.swift in Sources */,
-				3EFDE42A1D189E0900C5458C /* ProfileViewController.swift in Sources */,
+				3EF891981D1927A700B14F9A /* HomeViewController.swift in Sources */,
+				3ECDF0791D19B1060083AC57 /* Post.swift in Sources */,
+				3EF8919A1D1927C200B14F9A /* ProfileViewController.swift in Sources */,
 				3EFDE3FA1D188B3B00C5458C /* AppDelegate.swift in Sources */,
-				3EFDE42E1D189EAB00C5458C /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
