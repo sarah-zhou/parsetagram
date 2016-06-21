@@ -12,7 +12,6 @@ import ParseUI
 
 class PhotoCell: UITableViewCell {
     
-    
     @IBOutlet weak var photoView: PFImageView!
     
     var instagramPost: PFObject! {

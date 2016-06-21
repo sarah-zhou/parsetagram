@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import ParseUI
 
 class HomeViewController: UIViewController {
 
@@ -15,6 +16,20 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let query = PFQuery(className: "Post")
+        query.orderByDescending("createdAt")
+        query.includeKey("author")
+        query.limit = 20
+        
+        // fetch data asynchronously
+        query.findObjectsInBackgroundWithBlock { (posts: [PFObject]?, error: NSError?) -> Void in
+            if posts != nil {
+                // do something with the data fetched
+            } else {
+                // handle error
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
