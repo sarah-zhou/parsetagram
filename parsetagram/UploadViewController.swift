@@ -14,6 +14,9 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
 
     @IBOutlet weak var uploadImageView: UIImageView!
     @IBOutlet weak var captionTextView: UITextView!
+    @IBOutlet weak var shareLabel: UILabel!
+    @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var missingPhotoLabel: UILabel!
     
     let imagePicker = UIImagePickerController()
     
@@ -31,6 +34,23 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         presentViewController(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func uploadPhoto(sender: AnyObject) {
+        if uploadImageView.image == nil {
+            captionLabel.hidden = true
+            shareLabel.hidden = true
+            missingPhotoLabel.hidden = false
+        } else {
+            Post.postUserImage(uploadImageView.image, withCaption: captionTextView.text) { (success : Bool, error : NSError?) in
+                if success {
+                    print("new post saved")
+                self.performSegueWithIdentifier("uploadSuccess", sender: nil)
+                } else {
+                    print(error?.localizedDescription)
+                }
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,6 +58,10 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
 
         captionTextView.text = "Funny, witty, adorable, or meaningful caption here"
         captionTextView.textColor = UIColor.lightGrayColor()
+        
+        captionLabel.hidden = false
+        shareLabel.hidden = true
+        missingPhotoLabel.hidden = true
         
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
@@ -54,11 +78,13 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         // Dispose of any resources that can be recreated.
     }
     
-    func imagePickerController(picker: UIImagePickerController,
-                               didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             uploadImageView.contentMode = .ScaleAspectFit
             uploadImageView.image = pickedImage
+            captionLabel.hidden = false
+            shareLabel.hidden = true
+            missingPhotoLabel.hidden = true
         }
         
         dismissViewControllerAnimated(true, completion: nil)
@@ -75,8 +101,14 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         if textView.text.isEmpty {
             textView.text = "Insert funny, witty, adorable, or meaningful caption here"
             textView.textColor = UIColor.lightGrayColor()
+            captionLabel.hidden = false
+            shareLabel.hidden = true
+            missingPhotoLabel.hidden = true
+        } else {
+            captionLabel.hidden = true
+            shareLabel.hidden = false
+            missingPhotoLabel.hidden = true
         }
-        
     }
     
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {

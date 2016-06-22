@@ -13,6 +13,7 @@ import ParseUI
 class PhotoCell: UITableViewCell {
     
     @IBOutlet weak var photoView: PFImageView!
+    @IBOutlet weak var usernameLabel: UILabel!
     
     var instagramPost: PFObject! {
         didSet {
