@@ -19,6 +19,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     @IBOutlet weak var missingPhotoLabel: UILabel!
     
     let imagePicker = UIImagePickerController()
+    var actualCaption : String?
     
     @IBAction func cameraRoll(sender: AnyObject) {
         imagePicker.allowsEditing = false
@@ -40,7 +41,13 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             shareLabel.hidden = true
             missingPhotoLabel.hidden = false
         } else {
-            Post.postUserImage(uploadImageView.image, withCaption: captionTextView.text) { (success : Bool, error : NSError?) in
+            if captionTextView.text == "Funny, witty, adorable, or meaningful caption here" {
+                actualCaption = ""
+            } else {
+                actualCaption = captionTextView.text
+            }
+            print("actual caption: " + actualCaption!)
+            Post.postUserImage(uploadImageView.image, withCaption: actualCaption) { (success : Bool, error : NSError?) in
                 if success {
                     print("new post saved")
                     self.tabBarController?.selectedIndex = 0

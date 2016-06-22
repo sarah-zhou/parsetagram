@@ -12,7 +12,6 @@ import ParseUI
 
 class DetailViewController: UIViewController {
 
-    
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var numLikesLabel: UILabel!
@@ -22,12 +21,24 @@ class DetailViewController: UIViewController {
         self.navigationController?.popViewControllerAnimated(true)
     }
     
-    var postPhoto : PFObject!
+    var postPhoto : Post!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        photoImageView.image = postPhoto.img
+        
+        let caption = postPhoto.obj!["caption"] as? String
+        
+        if let user = postPhoto.obj!["author"] as? PFUser {
+            usernameLabel.text = user.username
+        } else {
+            usernameLabel.text = "NO USER"
+        }
+        
+        captionLabel.text = caption
+        captionLabel.sizeToFit()
+        
     }
 
     override func didReceiveMemoryWarning() {

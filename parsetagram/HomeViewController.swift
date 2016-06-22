@@ -14,10 +14,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var photosTableView: UITableView!
     
-    @IBAction func showDetailView(sender: AnyObject) {
-        
-    }
-    
     var posts : [Post] = [] {
         didSet {
             self.photosTableView.reloadData()
@@ -38,10 +34,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         photosTableView.insertSubview(refreshControl, atIndex: 0)
     }
     
+    /*
     override func viewDidAppear(animated : Bool) {
         super.viewDidAppear(animated)
         self.loadDataFromNetwork()
     }
+ */
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -114,16 +112,19 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    
     // change of segue from cell to button 
     // how to pass information through a button
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetailViewController" {
-            let cell = sender as! PhotoCell
+            let button = sender as! UIButton
+            let contentView = button.superview! as UIView
+            let cell = contentView.superview as! PhotoCell
             let indexPath = photosTableView.indexPathForCell(cell)
             let postPhoto = posts[indexPath!.row]
             
             let detailViewController = segue.destinationViewController as! DetailViewController
-            detailViewController.postPhoto = postPhoto.obj
+            detailViewController.postPhoto = postPhoto
         }
     }
 }
