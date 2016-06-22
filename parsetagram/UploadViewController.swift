@@ -43,7 +43,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             Post.postUserImage(uploadImageView.image, withCaption: captionTextView.text) { (success : Bool, error : NSError?) in
                 if success {
                     print("new post saved")
-                self.performSegueWithIdentifier("uploadSuccess", sender: nil)
+                    self.tabBarController?.selectedIndex = 0
                 } else {
                     print(error?.localizedDescription)
                 }
@@ -90,6 +90,18 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func resize(image: UIImage, newSize: CGSize) -> UIImage {
+        let resizeImageView = UIImageView(frame: CGRectMake(0, 0, newSize.width, newSize.height))
+        resizeImageView.contentMode = UIViewContentMode.ScaleAspectFill
+        resizeImageView.image = image
+        
+        UIGraphicsBeginImageContext(resizeImageView.frame.size)
+        resizeImageView.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
+    }
+    
     func textViewDidBeginEditing(textView: UITextView) {
         if textView.textColor == UIColor.lightGrayColor() {
             textView.text = ""
@@ -126,7 +138,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     func keyboardWillHide(sender: NSNotification) {
         self.view.frame.origin.y += 150
     }
-    
+
     /*
     // MARK: - Navigation
 

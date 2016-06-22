@@ -12,6 +12,16 @@ import ParseUI
 
 class DetailViewController: UIViewController {
 
+    
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var numLikesLabel: UILabel!
+    @IBOutlet weak var captionLabel: UILabel!
+    
+    @IBAction func back(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
     var postPhoto : PFObject!
     
     override func viewDidLoad() {

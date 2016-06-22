@@ -11,9 +11,13 @@ import Parse
 import ParseUI
 
 class Post: NSObject {
-    /**
-     * Other methods
-     */
+    
+    var obj: PFObject?
+    var img: UIImage?
+    
+    init(obj: PFObject?) {
+        self.obj = obj!
+    }
     
     /**
      Method to add a user post to Parse (uploading image file)
@@ -54,6 +58,12 @@ class Post: NSObject {
             }
         }
         return nil
+    }
+    
+    class func postArray(objects: [PFObject]) -> [Post] {
+        return objects.map({ (o) -> Post in
+            return Post(obj: o);
+        })
     }
 }
 

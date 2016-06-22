@@ -12,19 +12,34 @@ import ParseUI
 
 class PhotoCell: UITableViewCell {
     
+    @IBOutlet weak var doubleTapIcon: UIImageView!
     @IBOutlet weak var photoView: PFImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     
-    var instagramPost: PFObject! {
-        didSet {
-            self.photoView.file = instagramPost["image"] as? PFFile
-            self.photoView.loadInBackground()
-        }
+    override func awakeFromNib() {
+        
+        let gesture = UITapGestureRecognizer(target: self, action:#selector(PhotoCell.onDoubleTap(_:)))
+        gesture.numberOfTapsRequired = 2
+        contentView.addGestureRecognizer(gesture)
+        
+        doubleTapIcon?.hidden = true
+        
+        super.awakeFromNib()
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    func onDoubleTap(sender:AnyObject) {
+        doubleTapIcon?.hidden = false
+        doubleTapIcon?.alpha = 1.0
+        
+        UIView.animateWithDuration(0.6, delay: 0.3, options: [], animations: {
+            
+            self.doubleTapIcon?.alpha = 0
+            
+            }, completion: {
+                (value:Bool) in
+                
+                self.doubleTapIcon?.hidden = true
+        })
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

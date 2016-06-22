@@ -11,10 +11,14 @@ import Parse
 import ParseUI
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
+    
     @IBOutlet weak var photosTableView: UITableView!
     
-    var posts : [PFObject] = [] {
+    @IBAction func showDetailView(sender: AnyObject) {
+        
+    }
+    
+    var posts : [Post] = [] {
         didSet {
             self.photosTableView.reloadData()
         }
@@ -23,16 +27,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.loadDataFromNetwork()
+        
         photosTableView.dataSource = self
         photosTableView.delegate = self
         
-        self.loadDataFromNetwork()
-        
-        /*
         // Initialize a UIRefreshControl
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        photosTableView.insertSubview(refreshControl, atIndex: 0) */
+        photosTableView.insertSubview(refreshControl, atIndex: 0)
+    }
+    
+    override func viewDidAppear(animated : Bool) {
+        super.viewDidAppear(animated)
+        self.loadDataFromNetwork()
     }
 
     override func didReceiveMemoryWarning() {
@@ -44,7 +52,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let query = PFQuery(className: "Post")
         query.orderByDescending("createdAt")
         query.includeKey("author")
-        query.includeKey("image")
         query.limit = 20
         
         // fetch data asynchronously
@@ -52,7 +59,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if error == nil {
                 print("successfully retrieved things")
                 if let objects = objects {
-                    self.posts = objects
+                    self.posts = Post.postArray(objects)
+                    for var post in self.posts {
+                        let img = post.obj!["media"] as! PFFile
+                        img.getDataInBackgroundWithBlock({ (data, error) in
+                            if let image = UIImage(data: data!) {
+                                print("successfully downloaded image")
+                                post.img = image
+                                self.photosTableView.reloadData()
+                            } else {
+                                print("error downloading image: " + error!.localizedDescription)
+                            }
+                            
+                        })
+                    }
                 }
             } else {
                 print(error?.localizedDescription)
@@ -60,53 +80,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    /*
+    
     // Makes a network request to get updated data
     // Updates the tableView with the new data
     // Hides the RefreshControl
     func refreshControlAction(refreshControl: UIRefreshControl) {
         
-        let myRequest = loadDataFromNetwork()
-        
-        // Configure session so that completion handler is executed on main UI thread
-        let session = NSURLSession(
-            configuration: NSURLSessionConfiguration.defaultSessionConfiguration(),
-            delegate:nil,
-            delegateQueue:NSOperationQueue.mainQueue()
-        )
-        
-        let task : NSURLSessionDataTask = session.dataTaskWithRequest(myRequest, completionHandler: { (data, response, error) in
-                                                                        
-            // ... Use the new data to update the data source ...
-                                                                        
-            // Reload the tableView now that there is new data
-            
-            self.myTableView.reloadData()
-                                                                        
-            // Tell the refreshControl to stop spinning
-            refreshControl.endRefreshing()
-        });
-        task.resume()
-    } */
+        self.loadDataFromNetwork()
     
-    /* func refresh() {
-        let query = PFQuery(className: "Post")
-        query.orderByDescending("createdAt")
-        query.includeKey("author")
-        query.limit = 20
-        
-        // fetch data asynchronously
-        query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
-            if error == nil {
-                print("successfully retrieved things")
-                if let objects = objects {
-                    self.posts = objects
-                }
-            } else {
-                print(error?.localizedDescription)
-            }
-        }
-    } */
+        // Tell the refreshControl to stop spinning
+        refreshControl.endRefreshing()
+
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
@@ -117,24 +102,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         cell.selectionStyle = .None
         
-        let post = posts[indexPath.row] 
-        if let user = post["author"] as? PFUser {
+        let post = posts[indexPath.row]
+        if let user = post.obj!["author"] as? PFUser {
             cell.usernameLabel.text = user.username
         } else {
             cell.usernameLabel.text = "NO USER"
         }
         
-        if let uploadedPhoto = post["media"] as? UIImage {
-            print("image")
-            cell.photoView.image = uploadedPhoto
-        } else {
-            print("image bad")
-        }
-    
-        // cell.instagramPost = post
+        cell.photoView.image = post.img
+
         return cell
     }
     
+    // change of segue from cell to button 
+    // how to pass information through a button
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetailViewController" {
             let cell = sender as! PhotoCell
@@ -142,7 +123,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let postPhoto = posts[indexPath!.row]
             
             let detailViewController = segue.destinationViewController as! DetailViewController
-            detailViewController.postPhoto = postPhoto
+            detailViewController.postPhoto = postPhoto.obj
         }
     }
 }
