@@ -48,8 +48,8 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
                 actualCaption = captionTextView.text
             }
             
-            let size = CGSizeMake(350.0, 350.0)
-            let resizedImage = resize(uploadImageView.image!, newSize: size)
+            //let size = CGSizeMake(350.0, 350.0)
+            //let resizedImage = resize(uploadImageView.image!, newSize: size)
             
             let date = NSDate()
             let dateFormatter = NSDateFormatter()
@@ -57,7 +57,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
             let localDate = dateFormatter.stringFromDate(date)
             
-            Post.postUserImage(resizedImage, withCaption: actualCaption, withDate: localDate) { (success : Bool, error : NSError?) in
+            Post.postUserImage(uploadImageView.image!, withCaption: actualCaption, withDate: localDate) { (success : Bool, error : NSError?) in
                 if success {
                     print("new post saved")
                     self.tabBarController?.selectedIndex = 0
@@ -97,13 +97,14 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            uploadImageView.contentMode = .ScaleAspectFit
-            uploadImageView.image = pickedImage
+            let size = CGSizeMake(350.0, 350.0)
+            let resizedImage = resize(pickedImage, newSize: size)
+            
+            uploadImageView.image = resizedImage
             captionLabel.hidden = false
             shareLabel.hidden = true
             missingPhotoLabel.hidden = true
         }
-        
         dismissViewControllerAnimated(true, completion: nil)
     }
     

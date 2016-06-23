@@ -26,7 +26,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else if cell.filledHeartImageView.hidden == false {
             self.unlikePhoto()
         }
+        
+        Post.saveInBackground(postPhoto)
     }
+    
+    let CellIdentifier = "PhotoCell", HeaderViewIdentifier = "PhotoCellHeaderView"
     
     var posts : [Post] = [] {
         didSet {
@@ -43,10 +47,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController!.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Noteworthy-Light", size: 25)!]
+        
         self.loadDataFromNetwork()
         
         photosTableView.dataSource = self
         photosTableView.delegate = self
+        photosTableView.registerClass(UITableViewHeaderFooterView.self, forHeaderFooterViewReuseIdentifier: HeaderViewIdentifier)
         
         // Initialize a UIRefreshControl
         let refreshControl = UIRefreshControl()
@@ -62,8 +69,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         var insets = photosTableView.contentInset;
         insets.bottom += InfiniteScrollActivityView.defaultHeight;
         photosTableView.contentInset = insets
+       
     }
-    
     
     override func viewDidAppear(animated : Bool) {
         super.viewDidAppear(animated)
@@ -161,8 +168,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return posts.count
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -170,18 +181,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         cell.selectionStyle = .None
         
-        let post = posts[indexPath.row]
+        let post = posts[indexPath.section]
         
         let caption = post.obj!["caption"] as? String
-        let user = post.obj!["author"] as? PFUser
         let numLikes = post.obj!["likesCount"] as? Int
         
         cell.captionLabel.text = caption
-
-        cell.usernameLabel.text = user!.username
         
         if numLikes > 0 {
-            cell.numLikesImageView.hidden = false
             if numLikes == 1 {
                 cell.numLikesLabel.text = "\(numLikes!) Like"
             } else {
@@ -189,7 +196,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         } else {
             cell.numLikesLabel.text = ""
-            cell.numLikesImageView.hidden = true
         }
         
         cell.filledHeartImageView.hidden = true
@@ -197,30 +203,30 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 
         return cell
         
-        /*
-        let caption = postPhoto.obj!["caption"] as? String
-        let timestamp = postPhoto.obj!["createdAt"] as? String
-        let user = postPhoto.obj!["author"] as? PFUser
-        let numLikes = postPhoto.obj!["likesCount"] as? Int
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerFrame:CGRect = tableView.frame
+        // let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(HeaderViewIdentifier)! as UITableViewHeaderFooterView
         
-        captionLabel.text = caption
-        captionLabel.sizeToFit()
-        timestampLabel.text = timestamp
-        usernameLabel.text = user!.username
+        let post = posts[section]
+        let user = post.obj!["author"] as? PFUser
+        let author = user!.username
         
-        if numLikes > 0 {
-            numLikesImageView.hidden = false
-            if numLikes == 1 {
-                numLikesLabel.text = "\(numLikes!) Like"
-            } else {
-                numLikesLabel.text = "\(numLikes!) Likes"
-            }
-        } else {
-            numLikesLabel.text = ""
-            numLikesImageView.hidden = true
-        }
+        let title = UILabel(frame: CGRectMake(10, 0, 100, 30))
+        title.font = UIFont(name: "Helvetica-Bold", size: 17.0)
+        title.text = " \(author!)"
+        title.textColor = UIColor.lightGrayColor()
         
-        filledHeartImageView.hidden = true */
+        let headerView:UIView = UIView(frame: CGRectMake(0, 0, headerFrame.size.width, headerFrame.size.height))
+        headerView.backgroundColor = UIColor.whiteColor()
+        headerView.addSubview(title)
+        
+        return headerView
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -256,16 +262,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             let detailViewController = segue.destinationViewController as! DetailViewController
             detailViewController.postPhoto = postPhoto
-        } else if segue.identifier == "showUserProfile" {
-            let button = sender as! UIButton
-            let contentView = button.superview! as UIView
-            let cell = contentView.superview as! PhotoCell
-            let indexPath = photosTableView.indexPathForCell(cell)
-            let postPhoto = posts[indexPath!.row]
-            let user = PFUser.currentUser()
-            
-            let otherUserViewController = segue.destinationViewController as! OtherUserViewController
-            otherUserViewController.user = user
         }
     }
     
@@ -274,7 +270,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         likesCount = likesCount! + 1
         
         if likesCount > 0 {
-            cell.numLikesImageView.hidden = false
             if likesCount == 1 {
                 cell.numLikesLabel.text = "\(likesCount!) Like"
             } else {
@@ -282,7 +277,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         } else {
             cell.numLikesLabel.text = ""
-            cell.numLikesImageView.hidden = true
         }
         cell.filledHeartImageView.hidden = false
         postPhoto.obj!["likesCount"] = likesCount
@@ -293,7 +287,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         likesCount = likesCount! - 1
         
         if likesCount > 0 {
-            cell.numLikesImageView.hidden = false
             if likesCount == 1 {
                 cell.numLikesLabel.text = "\(likesCount!) Like"
             } else {
@@ -301,7 +294,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         } else {
             cell.numLikesLabel.text = ""
-            cell.numLikesImageView.hidden = true
         }
         cell.filledHeartImageView.hidden = true
         postPhoto.obj!["likesCount"] = likesCount

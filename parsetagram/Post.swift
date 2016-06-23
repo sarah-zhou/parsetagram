@@ -68,5 +68,9 @@ class Post: NSObject {
             return Post(obj: o);
         })
     }
+    
+    class func saveInBackground(post: Post) {
+        post.obj!.saveInBackground()
+    }
 }
 

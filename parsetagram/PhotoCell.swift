@@ -14,7 +14,6 @@ class PhotoCell: UITableViewCell {
     
     // @IBOutlet weak var doubleTapIcon: UIImageView!
     @IBOutlet weak var photoView: PFImageView!
-    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var filledHeartImageView: UIImageView!
     @IBOutlet weak var numLikesImageView: UIImageView!
     @IBOutlet weak var numLikesLabel: UILabel!

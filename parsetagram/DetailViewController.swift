@@ -107,14 +107,12 @@ class DetailViewController: UIViewController {
         postPhoto.obj!["likesCount"] = likesCount
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showUserProfile" {
+            let user = postPhoto.obj!["author"] as? PFUser
+            
+            let otherUserViewController = segue.destinationViewController as! OtherUserViewController
+            otherUserViewController.user = user
+        }
     }
-    */
-
 }

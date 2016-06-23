@@ -10,4 +10,5 @@ import UIKit
 
 class otherPhotoCell: UICollectionViewCell {
     
+    @IBOutlet weak var postPhotoImageView: UIImageView!
 }
