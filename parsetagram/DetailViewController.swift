@@ -62,6 +62,7 @@ class DetailViewController: UIViewController {
         }
         
         filledHeartImageView.hidden = true
+        
     }
 
     override func didReceiveMemoryWarning() {

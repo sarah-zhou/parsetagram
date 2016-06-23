@@ -14,7 +14,6 @@ class Post: NSObject {
     
     var obj: PFObject?
     var img: UIImage?
-
     
     init(obj: PFObject?) {
         self.obj = obj!

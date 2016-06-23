@@ -116,6 +116,9 @@
 		3E5439BF1D1C8CC9008B6AE9 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				3E5439B71D1C495F008B6AE9 /* otherPhotoCell.swift */,
+				3E977CA71D1B4EF700DC2D65 /* currentUserPhotoCell.swift */,
+				3EFDE4301D18B8EF00C5458C /* PhotoCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -145,14 +148,10 @@
 		3EFDE3F81D188B3B00C5458C /* parsetagram */ = {
 			isa = PBXGroup;
 			children = (
-				3E5439BF1D1C8CC9008B6AE9 /* Cells */,
 				3EFDE42F1D18A9D900C5458C /* View Controllers */,
+				3E5439BF1D1C8CC9008B6AE9 /* Cells */,
 				3EFDE3F91D188B3B00C5458C /* AppDelegate.swift */,
 				3EFDE3FD1D188B3B00C5458C /* Main.storyboard */,
-				3E5439B71D1C495F008B6AE9 /* otherPhotoCell.swift */,
-				3E5439B51D1BB0DE008B6AE9 /* OtherUserViewController.swift */,
-				3E977CA71D1B4EF700DC2D65 /* currentUserPhotoCell.swift */,
-				3EFDE4301D18B8EF00C5458C /* PhotoCell.swift */,
 				3E977CA51D1B481600DC2D65 /* InfiniteScrollActivityView.swift */,
 				3EFDE4001D188B3B00C5458C /* Assets.xcassets */,
 				3EFDE4021D188B3B00C5458C /* LaunchScreen.storyboard */,
@@ -190,6 +189,7 @@
 				3EFDE4271D18913900C5458C /* LoginViewController.swift */,
 				3EFDE3FB1D188B3B00C5458C /* ViewController.swift */,
 				3E977CA11D1A3F6B00DC2D65 /* DetailViewController.swift */,
+				3E5439B51D1BB0DE008B6AE9 /* OtherUserViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";

@@ -12,9 +12,9 @@ import ParseUI
 
 class ProfileViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
-    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
+    @IBOutlet weak var logOutButton: UIBarButtonItem!
     
     var posts : [Post] = [] {
         didSet {
@@ -48,7 +48,10 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         collectionView.insertSubview(refreshControl, atIndex: 0)
 
         let user = PFUser.currentUser()
-        usernameLabel.text = user?.username
+        self.navigationController!.navigationBar.topItem?.title = user?.username
+        self.navigationController!.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Helvetica-Bold", size: 17.0)!]
+        logOutButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Helvetica", size: 15.0)!], forState: UIControlState.Normal)
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -123,16 +126,15 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         
         return cell
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "showDetailViewController" {
+            let cell = sender as! currentUserPhotoCell
+            let indexPath = collectionView.indexPathForCell(cell)
+            let postPhoto = posts[indexPath!.row]
+            
+            let detailViewController = segue.destinationViewController as! DetailViewController
+            detailViewController.postPhoto = postPhoto
+        }
     }
-    */
-
 }

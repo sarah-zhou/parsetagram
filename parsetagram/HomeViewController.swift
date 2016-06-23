@@ -213,9 +213,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let user = post.obj!["author"] as? PFUser
         let author = user!.username
         
-        let title = UILabel(frame: CGRectMake(10, 0, 100, 30))
-        title.font = UIFont(name: "Helvetica-Bold", size: 17.0)
-        title.text = " \(author!)"
+        let title = UILabel(frame: CGRectMake(10, 5, 100, 30))
+        title.font = UIFont(name: "Helvetica-Bold", size: 15.0)
+        title.text = "\(author!)"
         title.textColor = UIColor.lightGrayColor()
         
         let headerView:UIView = UIView(frame: CGRectMake(0, 0, headerFrame.size.width, headerFrame.size.height))
@@ -226,7 +226,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        return 40
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -250,8 +250,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
-    // change of segue from cell to button 
-    // how to pass information through a button
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetailViewController" {
             let button = sender as! UIButton
