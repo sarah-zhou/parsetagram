@@ -14,11 +14,22 @@ class DetailViewController: UIViewController {
 
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var filledHeartImageView: UIImageView!
+    @IBOutlet weak var numLikesImageView: UIImageView!
     @IBOutlet weak var numLikesLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
+    @IBOutlet weak var timestampLabel: UILabel!
     
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    @IBAction func photoLiked(sender: AnyObject) {
+        if filledHeartImageView.hidden == true {
+            self.likePhoto()
+        } else if filledHeartImageView.hidden == false {
+            self.unlikePhoto()
+        }
     }
     
     var postPhoto : Post!
@@ -29,16 +40,28 @@ class DetailViewController: UIViewController {
         photoImageView.image = postPhoto.img
         
         let caption = postPhoto.obj!["caption"] as? String
-        
-        if let user = postPhoto.obj!["author"] as? PFUser {
-            usernameLabel.text = user.username
-        } else {
-            usernameLabel.text = "NO USER"
-        }
+        let timestamp = postPhoto.obj!["createdAt"] as? String
+        let user = postPhoto.obj!["author"] as? PFUser
+        let numLikes = postPhoto.obj!["likesCount"] as? Int
         
         captionLabel.text = caption
         captionLabel.sizeToFit()
+        timestampLabel.text = timestamp
+        usernameLabel.text = user!.username
         
+        if numLikes > 0 {
+            numLikesImageView.hidden = false
+            if numLikes == 1 {
+                numLikesLabel.text = "\(numLikes!) Like"
+            } else {
+                numLikesLabel.text = "\(numLikes!) Likes"
+            }
+        } else {
+            numLikesLabel.text = ""
+            numLikesImageView.hidden = true
+        }
+        
+        filledHeartImageView.hidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,7 +69,44 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    func likePhoto() {
+        var likesCount = postPhoto.obj!["likesCount"] as? Int
+        likesCount = likesCount! + 1
+        
+        if likesCount > 0 {
+            numLikesImageView.hidden = false
+            if likesCount == 1 {
+                numLikesLabel.text = "\(likesCount!) Like"
+            } else {
+                numLikesLabel.text = "\(likesCount!) Likes"
+            }
+        } else {
+            numLikesLabel.text = ""
+            numLikesImageView.hidden = true
+        }
+        filledHeartImageView.hidden = false
+        postPhoto.obj!["likesCount"] = likesCount
+    }
+    
+    func unlikePhoto() {
+        var likesCount = postPhoto.obj!["likesCount"] as? Int
+        likesCount = likesCount! - 1
+        
+        if likesCount > 0 {
+            numLikesImageView.hidden = false
+            if likesCount == 1 {
+                numLikesLabel.text = "\(likesCount!) Like"
+            } else {
+                numLikesLabel.text = "\(likesCount!) Likes"
+            }
+        } else {
+            numLikesLabel.text = ""
+            numLikesImageView.hidden = true
+        }
+        filledHeartImageView.hidden = true
+        postPhoto.obj!["likesCount"] = likesCount
+    }
+    
     /*
     // MARK: - Navigation
 

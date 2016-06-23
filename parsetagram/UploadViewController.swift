@@ -46,8 +46,11 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             } else {
                 actualCaption = captionTextView.text
             }
-            print("actual caption: " + actualCaption!)
-            Post.postUserImage(uploadImageView.image, withCaption: actualCaption) { (success : Bool, error : NSError?) in
+            
+            let size = CGSizeMake(350.0, 350.0)
+            let resizedImage = resize(uploadImageView.image!, newSize: size)
+            
+            Post.postUserImage(resizedImage, withCaption: actualCaption) { (success : Bool, error : NSError?) in
                 if success {
                     print("new post saved")
                     self.tabBarController?.selectedIndex = 0

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		395F4B9AFC5FED8773E0164C /* Pods_parsetagramUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26EADD658A7DF80599BEFC2B /* Pods_parsetagramUITests.framework */; };
 		3E977CA21D1A3F6B00DC2D65 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E977CA11D1A3F6B00DC2D65 /* DetailViewController.swift */; };
+		3E977CA61D1B481600DC2D65 /* InfiniteScrollActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E977CA51D1B481600DC2D65 /* InfiniteScrollActivityView.swift */; };
+		3E977CA81D1B4EF700DC2D65 /* currentUserPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E977CA71D1B4EF700DC2D65 /* currentUserPhotoCell.swift */; };
 		3EC795321D18C83D007535BC /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC795311D18C83D007535BC /* SignUpViewController.swift */; };
 		3ECDF0791D19B1060083AC57 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ECDF0781D19B1060083AC57 /* Post.swift */; };
 		3EF891981D1927A700B14F9A /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EF891971D1927A700B14F9A /* HomeViewController.swift */; };
@@ -49,6 +51,8 @@
 		227A3DA2B917D61BDB04AA8E /* Pods_parsetagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parsetagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26EADD658A7DF80599BEFC2B /* Pods_parsetagramUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parsetagramUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E977CA11D1A3F6B00DC2D65 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		3E977CA51D1B481600DC2D65 /* InfiniteScrollActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteScrollActivityView.swift; sourceTree = "<group>"; };
+		3E977CA71D1B4EF700DC2D65 /* currentUserPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = currentUserPhotoCell.swift; sourceTree = "<group>"; };
 		3EC795311D18C83D007535BC /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3ECDF0781D19B1060083AC57 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		3EF891971D1927A700B14F9A /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -133,7 +137,9 @@
 				3EFDE42F1D18A9D900C5458C /* View Controllers */,
 				3EFDE3F91D188B3B00C5458C /* AppDelegate.swift */,
 				3EFDE3FD1D188B3B00C5458C /* Main.storyboard */,
+				3E977CA71D1B4EF700DC2D65 /* currentUserPhotoCell.swift */,
 				3EFDE4301D18B8EF00C5458C /* PhotoCell.swift */,
+				3E977CA51D1B481600DC2D65 /* InfiniteScrollActivityView.swift */,
 				3EFDE4001D188B3B00C5458C /* Assets.xcassets */,
 				3EFDE4021D188B3B00C5458C /* LaunchScreen.storyboard */,
 				3EFDE4051D188B3B00C5458C /* Info.plist */,
@@ -460,10 +466,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EFDE4311D18B8EF00C5458C /* PhotoCell.swift in Sources */,
+				3E977CA81D1B4EF700DC2D65 /* currentUserPhotoCell.swift in Sources */,
 				3EFDE4281D18913900C5458C /* LoginViewController.swift in Sources */,
 				3EC795321D18C83D007535BC /* SignUpViewController.swift in Sources */,
 				3EF8919C1D1927D100B14F9A /* UploadViewController.swift in Sources */,
 				3EFDE3FC1D188B3B00C5458C /* ViewController.swift in Sources */,
+				3E977CA61D1B481600DC2D65 /* InfiniteScrollActivityView.swift in Sources */,
 				3EF891981D1927A700B14F9A /* HomeViewController.swift in Sources */,
 				3ECDF0791D19B1060083AC57 /* Post.swift in Sources */,
 				3E977CA21D1A3F6B00DC2D65 /* DetailViewController.swift in Sources */,

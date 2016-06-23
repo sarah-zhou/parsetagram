@@ -14,6 +14,7 @@ class Post: NSObject {
     
     var obj: PFObject?
     var img: UIImage?
+    var dateCreated: NSDate?
     
     init(obj: PFObject?) {
         self.obj = obj!
@@ -54,6 +55,7 @@ class Post: NSObject {
         if let image = image {
             // get image data and check if that is not nil
             if let imageData = UIImagePNGRepresentation(image) {
+                print("size: \(imageData.length)")
                 return PFFile(name: "image.png", data: imageData)
             }
         }

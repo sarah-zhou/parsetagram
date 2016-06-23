@@ -12,21 +12,22 @@ import ParseUI
 
 class PhotoCell: UITableViewCell {
     
-    @IBOutlet weak var doubleTapIcon: UIImageView!
+    // @IBOutlet weak var doubleTapIcon: UIImageView!
     @IBOutlet weak var photoView: PFImageView!
     @IBOutlet weak var usernameLabel: UILabel!
     
     override func awakeFromNib() {
         
-        let gesture = UITapGestureRecognizer(target: self, action:#selector(PhotoCell.onDoubleTap(_:)))
+        /* let gesture = UITapGestureRecognizer(target: self, action:#selector(PhotoCell.onDoubleTap(_:)))
         gesture.numberOfTapsRequired = 2
         contentView.addGestureRecognizer(gesture)
         
-        doubleTapIcon?.hidden = true
+        doubleTapIcon?.hidden = true */
         
         super.awakeFromNib()
     }
     
+    /*
     func onDoubleTap(sender:AnyObject) {
         doubleTapIcon?.hidden = false
         doubleTapIcon?.alpha = 1.0
@@ -40,7 +41,7 @@ class PhotoCell: UITableViewCell {
                 
                 self.doubleTapIcon?.hidden = true
         })
-    }
+    } */
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
