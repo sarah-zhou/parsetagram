@@ -14,11 +14,28 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var photosTableView: UITableView!
     
+    @IBAction func photoLiked(sender: AnyObject) {
+        let button = sender as! UIButton
+        let contentView = button.superview! as UIView
+        cell = contentView.superview as! PhotoCell
+        let indexPath = photosTableView.indexPathForCell(cell)
+        postPhoto = posts[indexPath!.row]
+        
+        if cell.filledHeartImageView.hidden == true {
+            self.likePhoto()
+        } else if cell.filledHeartImageView.hidden == false {
+            self.unlikePhoto()
+        }
+    }
+    
     var posts : [Post] = [] {
         didSet {
             self.photosTableView.reloadData()
         }
     }
+    
+    var cell : PhotoCell!
+    var postPhoto : Post!
     
     var isMoreDataLoading = false
     var loadingMoreView:InfiniteScrollActivityView?
@@ -47,12 +64,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         photosTableView.contentInset = insets
     }
     
-    /*
+    
     override func viewDidAppear(animated : Bool) {
         super.viewDidAppear(animated)
-        self.loadDataFromNetwork()
+        self.photosTableView.reloadData()
     }
- */
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -96,7 +112,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let query = PFQuery(className: "Post")
         query.orderByDescending("createdAt")
         query.includeKey("author")
-        query.limit = 5
+        query.limit = 20
         query.skip = posts.count
         
         // fetch data asynchronously
@@ -138,7 +154,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     // Hides the RefreshControl
     func refreshControlAction(refreshControl: UIRefreshControl) {
         
-        self.loadDataFromNetwork()
+        self.photosTableView.reloadData()
 
         // Tell the refreshControl to stop spinning
         refreshControl.endRefreshing()
@@ -155,15 +171,56 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.selectionStyle = .None
         
         let post = posts[indexPath.row]
-        if let user = post.obj!["author"] as? PFUser {
-            cell.usernameLabel.text = user.username
+        
+        let caption = post.obj!["caption"] as? String
+        let user = post.obj!["author"] as? PFUser
+        let numLikes = post.obj!["likesCount"] as? Int
+        
+        cell.captionLabel.text = caption
+
+        cell.usernameLabel.text = user!.username
+        
+        if numLikes > 0 {
+            cell.numLikesImageView.hidden = false
+            if numLikes == 1 {
+                cell.numLikesLabel.text = "\(numLikes!) Like"
+            } else {
+                cell.numLikesLabel.text = "\(numLikes!) Likes"
+            }
         } else {
-            cell.usernameLabel.text = "NO USER"
+            cell.numLikesLabel.text = ""
+            cell.numLikesImageView.hidden = true
         }
         
+        cell.filledHeartImageView.hidden = true
         cell.photoView.image = post.img
 
         return cell
+        
+        /*
+        let caption = postPhoto.obj!["caption"] as? String
+        let timestamp = postPhoto.obj!["createdAt"] as? String
+        let user = postPhoto.obj!["author"] as? PFUser
+        let numLikes = postPhoto.obj!["likesCount"] as? Int
+        
+        captionLabel.text = caption
+        captionLabel.sizeToFit()
+        timestampLabel.text = timestamp
+        usernameLabel.text = user!.username
+        
+        if numLikes > 0 {
+            numLikesImageView.hidden = false
+            if numLikes == 1 {
+                numLikesLabel.text = "\(numLikes!) Like"
+            } else {
+                numLikesLabel.text = "\(numLikes!) Likes"
+            }
+        } else {
+            numLikesLabel.text = ""
+            numLikesImageView.hidden = true
+        }
+        
+        filledHeartImageView.hidden = true */
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
@@ -199,6 +256,54 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             let detailViewController = segue.destinationViewController as! DetailViewController
             detailViewController.postPhoto = postPhoto
+        } else if segue.identifier == "showUserProfile" {
+            let button = sender as! UIButton
+            let contentView = button.superview! as UIView
+            let cell = contentView.superview as! PhotoCell
+            let indexPath = photosTableView.indexPathForCell(cell)
+            let postPhoto = posts[indexPath!.row]
+            let user = PFUser.currentUser()
+            
+            let otherUserViewController = segue.destinationViewController as! OtherUserViewController
+            otherUserViewController.user = user
         }
+    }
+    
+    func likePhoto() {
+        var likesCount = postPhoto.obj!["likesCount"] as? Int
+        likesCount = likesCount! + 1
+        
+        if likesCount > 0 {
+            cell.numLikesImageView.hidden = false
+            if likesCount == 1 {
+                cell.numLikesLabel.text = "\(likesCount!) Like"
+            } else {
+                cell.numLikesLabel.text = "\(likesCount!) Likes"
+            }
+        } else {
+            cell.numLikesLabel.text = ""
+            cell.numLikesImageView.hidden = true
+        }
+        cell.filledHeartImageView.hidden = false
+        postPhoto.obj!["likesCount"] = likesCount
+    }
+    
+    func unlikePhoto() {
+        var likesCount = postPhoto.obj!["likesCount"] as? Int
+        likesCount = likesCount! - 1
+        
+        if likesCount > 0 {
+            cell.numLikesImageView.hidden = false
+            if likesCount == 1 {
+                cell.numLikesLabel.text = "\(likesCount!) Like"
+            } else {
+                cell.numLikesLabel.text = "\(likesCount!) Likes"
+            }
+        } else {
+            cell.numLikesLabel.text = ""
+            cell.numLikesImageView.hidden = true
+        }
+        cell.filledHeartImageView.hidden = true
+        postPhoto.obj!["likesCount"] = likesCount
     }
 }

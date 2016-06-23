@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import ParseUI
+import MBProgressHUD
 
 class UploadViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
@@ -50,7 +51,13 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
             let size = CGSizeMake(350.0, 350.0)
             let resizedImage = resize(uploadImageView.image!, newSize: size)
             
-            Post.postUserImage(resizedImage, withCaption: actualCaption) { (success : Bool, error : NSError?) in
+            let date = NSDate()
+            let dateFormatter = NSDateFormatter()
+            dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
+            dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
+            let localDate = dateFormatter.stringFromDate(date)
+            
+            Post.postUserImage(resizedImage, withCaption: actualCaption, withDate: localDate) { (success : Bool, error : NSError?) in
                 if success {
                     print("new post saved")
                     self.tabBarController?.selectedIndex = 0

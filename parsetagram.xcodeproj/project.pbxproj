@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		395F4B9AFC5FED8773E0164C /* Pods_parsetagramUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26EADD658A7DF80599BEFC2B /* Pods_parsetagramUITests.framework */; };
+		3E5439B61D1BB0DE008B6AE9 /* OtherUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5439B51D1BB0DE008B6AE9 /* OtherUserViewController.swift */; };
+		3E5439B81D1C495F008B6AE9 /* otherPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5439B71D1C495F008B6AE9 /* otherPhotoCell.swift */; };
 		3E977CA21D1A3F6B00DC2D65 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E977CA11D1A3F6B00DC2D65 /* DetailViewController.swift */; };
 		3E977CA61D1B481600DC2D65 /* InfiniteScrollActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E977CA51D1B481600DC2D65 /* InfiniteScrollActivityView.swift */; };
 		3E977CA81D1B4EF700DC2D65 /* currentUserPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E977CA71D1B4EF700DC2D65 /* currentUserPhotoCell.swift */; };
@@ -50,6 +52,8 @@
 		071BFAF71420FC033A7E29BC /* Pods-parsetagramUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parsetagramUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-parsetagramUITests/Pods-parsetagramUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		227A3DA2B917D61BDB04AA8E /* Pods_parsetagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parsetagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		26EADD658A7DF80599BEFC2B /* Pods_parsetagramUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parsetagramUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E5439B51D1BB0DE008B6AE9 /* OtherUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OtherUserViewController.swift; sourceTree = "<group>"; };
+		3E5439B71D1C495F008B6AE9 /* otherPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = otherPhotoCell.swift; sourceTree = "<group>"; };
 		3E977CA11D1A3F6B00DC2D65 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		3E977CA51D1B481600DC2D65 /* InfiniteScrollActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteScrollActivityView.swift; sourceTree = "<group>"; };
 		3E977CA71D1B4EF700DC2D65 /* currentUserPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = currentUserPhotoCell.swift; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 				3EFDE42F1D18A9D900C5458C /* View Controllers */,
 				3EFDE3F91D188B3B00C5458C /* AppDelegate.swift */,
 				3EFDE3FD1D188B3B00C5458C /* Main.storyboard */,
+				3E5439B71D1C495F008B6AE9 /* otherPhotoCell.swift */,
+				3E5439B51D1BB0DE008B6AE9 /* OtherUserViewController.swift */,
 				3E977CA71D1B4EF700DC2D65 /* currentUserPhotoCell.swift */,
 				3EFDE4301D18B8EF00C5458C /* PhotoCell.swift */,
 				3E977CA51D1B481600DC2D65 /* InfiniteScrollActivityView.swift */,
@@ -468,9 +474,11 @@
 				3EFDE4311D18B8EF00C5458C /* PhotoCell.swift in Sources */,
 				3E977CA81D1B4EF700DC2D65 /* currentUserPhotoCell.swift in Sources */,
 				3EFDE4281D18913900C5458C /* LoginViewController.swift in Sources */,
+				3E5439B81D1C495F008B6AE9 /* otherPhotoCell.swift in Sources */,
 				3EC795321D18C83D007535BC /* SignUpViewController.swift in Sources */,
 				3EF8919C1D1927D100B14F9A /* UploadViewController.swift in Sources */,
 				3EFDE3FC1D188B3B00C5458C /* ViewController.swift in Sources */,
+				3E5439B61D1BB0DE008B6AE9 /* OtherUserViewController.swift in Sources */,
 				3E977CA61D1B481600DC2D65 /* InfiniteScrollActivityView.swift in Sources */,
 				3EF891981D1927A700B14F9A /* HomeViewController.swift in Sources */,
 				3ECDF0791D19B1060083AC57 /* Post.swift in Sources */,

@@ -14,7 +14,7 @@ class Post: NSObject {
     
     var obj: PFObject?
     var img: UIImage?
-    var dateCreated: NSDate?
+
     
     init(obj: PFObject?) {
         self.obj = obj!
@@ -28,7 +28,7 @@ class Post: NSObject {
      - parameter completion: Block to be executed after save operation is complete
      */
     
-    class func postUserImage(image: UIImage?, withCaption caption: String?, withCompletion completion: PFBooleanResultBlock?) {
+    class func postUserImage(image: UIImage?, withCaption caption: String?, withDate date: String?, withCompletion completion: PFBooleanResultBlock?) {
         // Create Parse object PFObject
         let post = PFObject(className: "Post")
         
@@ -38,6 +38,7 @@ class Post: NSObject {
         post["caption"] = caption
         post["likesCount"] = 0
         post["commentsCount"] = 0
+        post["date"] = date
         
         // Save object (following function will save the object in Parse asynchronously)
         post.saveInBackgroundWithBlock(completion)

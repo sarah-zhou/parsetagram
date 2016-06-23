@@ -12,6 +12,7 @@ import ParseUI
 
 class ProfileViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
+    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
@@ -46,6 +47,8 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
         collectionView.insertSubview(refreshControl, atIndex: 0)
 
+        let user = PFUser.currentUser()
+        usernameLabel.text = user?.username
     }
     
     override func viewWillAppear(animated: Bool) {
