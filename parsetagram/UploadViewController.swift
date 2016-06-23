@@ -48,18 +48,19 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
                 actualCaption = captionTextView.text
             }
             
-            //let size = CGSizeMake(350.0, 350.0)
-            //let resizedImage = resize(uploadImageView.image!, newSize: size)
-            
             let date = NSDate()
             let dateFormatter = NSDateFormatter()
             dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
             dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
             let localDate = dateFormatter.stringFromDate(date)
             
+            // Display HUD right before the request is made
+            MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+            
             Post.postUserImage(uploadImageView.image!, withCaption: actualCaption, withDate: localDate) { (success : Bool, error : NSError?) in
                 if success {
                     print("new post saved")
+                    MBProgressHUD.hideHUDForView(self.view, animated: true)
                     self.tabBarController?.selectedIndex = 0
                 } else {
                     print(error?.localizedDescription)

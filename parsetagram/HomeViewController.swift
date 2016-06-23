@@ -74,7 +74,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidAppear(animated : Bool) {
         super.viewDidAppear(animated)
-        self.photosTableView.reloadData()
+        self.loadDataFromNetwork()
     }
 
     override func didReceiveMemoryWarning() {
