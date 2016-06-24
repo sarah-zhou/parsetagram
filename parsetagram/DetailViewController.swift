@@ -19,6 +19,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var numLikesLabel: UILabel!
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
+    @IBOutlet weak var profPicImageView: PFImageView!
     
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
@@ -65,6 +66,16 @@ class DetailViewController: UIViewController {
         
         filledHeartImageView.hidden = true
         
+        profPicImageView.layer.borderWidth = 1
+        profPicImageView.layer.masksToBounds = false
+        profPicImageView.layer.borderColor = UIColor.blackColor().CGColor
+        profPicImageView.layer.cornerRadius = profPicImageView.frame.height/2
+        profPicImageView.clipsToBounds = true
+        
+        if let pic = user!["profilepic"] as? PFFile {
+            profPicImageView.file = pic
+            profPicImageView.loadInBackground()
+        }
     }
 
     override func didReceiveMemoryWarning() {

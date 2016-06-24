@@ -62,9 +62,20 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
 
         let user = PFUser.currentUser()
         usernameLabel.text = user!.username
+        
         //self.navigationController!.navigationBar.topItem?.title = user?.username
         //self.navigationController!.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Helvetica-Bold", size: 17.0)!]
         logOutButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Helvetica", size: 15.0)!], forState: UIControlState.Normal)
+        
+        if let bio = user!["bio"] as? String {
+            bioTextField.text = bio
+        }
+        
+        profPicImageView.layer.borderWidth = 1
+        profPicImageView.layer.masksToBounds = false
+        profPicImageView.layer.borderColor = UIColor.blackColor().CGColor
+        profPicImageView.layer.cornerRadius = profPicImageView.frame.height/2
+        profPicImageView.clipsToBounds = true
         
         if let pic = user!["profilepic"] as? PFFile {
             profPicImageView.file = pic
@@ -146,6 +157,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
             let size = CGSize(width: 100.0, height: 100.0)
             let resizedImage = resize(pickedImage, newSize: size)
             

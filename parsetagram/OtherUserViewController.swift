@@ -12,11 +12,12 @@ import ParseUI
 
 class OtherUserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
+    
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet weak var otherCollectionView: UICollectionView!
     @IBOutlet weak var otherFlowLayout: UICollectionViewFlowLayout!
-    @IBOutlet weak var profPicImageView: UIImageView!
+    @IBOutlet weak var profPicImageView: PFImageView!
     
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
@@ -49,7 +50,17 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
         
         usernameLabel.text = user?.username
         bioLabel.text = user?["bio"] as? String
-        profPicImageView.image = user?["profilepic"] as? UIImage
+        
+        profPicImageView.layer.borderWidth = 1
+        profPicImageView.layer.masksToBounds = false
+        profPicImageView.layer.borderColor = UIColor.blackColor().CGColor
+        profPicImageView.layer.cornerRadius = profPicImageView.frame.height/2
+        profPicImageView.clipsToBounds = true
+        
+        if let pic = user!["profilepic"] as? PFFile {
+            profPicImageView.file = pic
+            profPicImageView.loadInBackground()
+        }
     }
 
     override func didReceiveMemoryWarning() {
