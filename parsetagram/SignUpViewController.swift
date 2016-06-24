@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -49,6 +49,13 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
 
         view.sendSubviewToBack(backgroundImageView)
+        
+        usernameField.delegate = self
+        passwordField.delegate = self
+        
+        usernameField.autocapitalizationType = UITextAutocapitalizationType.None
+        usernameField.autocorrectionType = .No
+        
         usernameTakenView.hidden = true
         
         usernameField.attributedPlaceholder = NSAttributedString(string:"Username",
@@ -67,6 +74,10 @@ class SignUpViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 
     /*
     // MARK: - Navigation
