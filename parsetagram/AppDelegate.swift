@@ -28,9 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
         )
         
-        let currentUser = PFUser.currentUser()?.username
+//        let currentUser = PFUser.currentUser()
         
-        if currentUser != nil {
+        if let _ = PFUser.currentUser() {
             let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let initialViewController : UIViewController = mainStoryboard.instantiateViewControllerWithIdentifier("tabBar") as UIViewController
             self.window = UIWindow(frame: UIScreen.mainScreen().bounds)

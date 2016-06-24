@@ -66,7 +66,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="modal" id="0tR-lL-Gh6"/>
+                                    <segue destination="BYZ-38-t0r" kind="modal" identifier="" id="0tR-lL-Gh6"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="center" minimumFontSize="17" id="pyg-rQ-YXk">
@@ -586,7 +586,6 @@
                         <barButtonItem key="rightBarButtonItem" title="Log out" id="wDO-aC-zmR">
                             <connections>
                                 <action selector="logOut:" destination="TpZ-eq-OsA" id="reQ-zF-bDX"/>
-                                <segue destination="BYZ-38-t0r" kind="modal" identifier="logOut" id="94t-jr-AqE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -595,6 +594,7 @@
                         <outlet property="collectionView" destination="fLG-3d-Xy2" id="ZVo-Fk-syw"/>
                         <outlet property="flowLayout" destination="Lb9-c8-fr8" id="oZg-m4-WeL"/>
                         <outlet property="logOutButton" destination="wDO-aC-zmR" id="Ygu-ec-asW"/>
+                        <segue destination="BYZ-38-t0r" kind="modal" identifier="logOut" id="fmL-6D-u9i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RLG-49-cfP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -674,8 +674,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Gbk-kE-iG4"/>
-        <segue reference="94t-jr-AqE"/>
-        <segue reference="4vk-MI-KK2"/>
+        <segue reference="fmL-6D-u9i"/>
+        <segue reference="Bwe-Ne-91L"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
 </document>
