@@ -24,8 +24,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     
     @IBAction func logOut(sender: AnyObject) {
         PFUser.logOutInBackgroundWithBlock { (error: NSError?) in
-            let Login = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as! LoginViewController
-            self.presentViewController(Login, animated: true, completion: nil)
+            self.performSegueWithIdentifier("logOut", sender: nil)
         }
     }
     

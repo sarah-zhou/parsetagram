@@ -256,7 +256,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let contentView = button.superview! as UIView
             let cell = contentView.superview as! PhotoCell
             let indexPath = photosTableView.indexPathForCell(cell)
-            let postPhoto = posts[indexPath!.row]
+            let postPhoto = posts[indexPath!.section]
             
             let detailViewController = segue.destinationViewController as! DetailViewController
             detailViewController.postPhoto = postPhoto

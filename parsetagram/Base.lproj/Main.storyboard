@@ -456,7 +456,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="32A-JB-bpR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-814.5" y="3024.5"/>
+            <point key="canvasLocation" x="-478.5" y="3000.5"/>
         </scene>
         <!--Other User View Controller-->
         <scene sceneID="0eG-pT-Rgz">
@@ -517,7 +517,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CQ0-1a-Adb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-220.5" y="3024.5"/>
+            <point key="canvasLocation" x="155.5" y="3000.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="vDT-x4-hH7">
@@ -586,7 +586,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Log out" id="wDO-aC-zmR">
                             <connections>
                                 <action selector="logOut:" destination="TpZ-eq-OsA" id="reQ-zF-bDX"/>
-                                <segue destination="BYZ-38-t0r" kind="modal" id="94t-jr-AqE"/>
+                                <segue destination="BYZ-38-t0r" kind="modal" identifier="logOut" id="94t-jr-AqE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -599,7 +599,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RLG-49-cfP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1299.5" y="2088.5"/>
+            <point key="canvasLocation" x="774.5" y="2088.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sXc-Xq-hvx">
@@ -659,7 +659,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tRg-vO-FwZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="767" y="2088"/>
+            <point key="canvasLocation" x="774.5" y="1184.5"/>
         </scene>
     </scenes>
     <resources>
@@ -675,7 +675,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Gbk-kE-iG4"/>
         <segue reference="94t-jr-AqE"/>
-        <segue reference="Bwe-Ne-91L"/>
+        <segue reference="4vk-MI-KK2"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
 </document>
