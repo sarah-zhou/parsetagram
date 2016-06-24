@@ -98,7 +98,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            let size = CGSizeMake(350.0, 350.0)
+            let size = CGSizeMake(500.0, 500.0)
             let resizedImage = resize(pickedImage, newSize: size)
             
             uploadImageView.image = resizedImage

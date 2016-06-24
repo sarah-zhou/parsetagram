@@ -24,6 +24,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         // set user properties
         newUser.username = usernameField.text
         newUser.password = passwordField.text
+        newUser["profilepic"] = NSNull()
         
         // call sign up function on the object
         newUser.signUpInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in

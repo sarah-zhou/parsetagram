@@ -13,13 +13,15 @@ import ParseUI
 class OtherUserViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var bioLabel: UILabel!
     @IBOutlet weak var otherCollectionView: UICollectionView!
     @IBOutlet weak var otherFlowLayout: UICollectionViewFlowLayout!
+    @IBOutlet weak var profPicImageView: UIImageView!
     
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
     }
-    
+
     var user : PFUser!
     var posts : [Post] = [] {
         didSet {
@@ -46,6 +48,8 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
         otherCollectionView.insertSubview(refreshControl, atIndex: 0)
         
         usernameLabel.text = user?.username
+        bioLabel.text = user?["bio"] as? String
+        profPicImageView.image = user?["profilepic"] as? UIImage
     }
 
     override func didReceiveMemoryWarning() {

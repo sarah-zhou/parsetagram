@@ -19,7 +19,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let contentView = button.superview! as UIView
         cell = contentView.superview as! PhotoCell
         let indexPath = photosTableView.indexPathForCell(cell)
-        postPhoto = posts[indexPath!.row]
+        postPhoto = posts[indexPath!.section]
         
         if cell.filledHeartImageView.hidden == true {
             self.likePhoto()
@@ -154,7 +154,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         }
     }
-
     
     // Makes a network request to get updated data
     // Updates the tableView with the new data
@@ -207,13 +206,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerFrame:CGRect = tableView.frame
-        // let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(HeaderViewIdentifier)! as UITableViewHeaderFooterView
         
         let post = posts[section]
         let user = post.obj!["author"] as? PFUser
         let author = user!.username
         
-        let title = UILabel(frame: CGRectMake(10, 5, 100, 30))
+        let title = UILabel(frame: CGRectMake(10, 5, 375, 30))
         title.font = UIFont(name: "Helvetica-Bold", size: 15.0)
         title.text = "\(author!)"
         title.textColor = UIColor.lightGrayColor()

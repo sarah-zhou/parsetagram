@@ -30,6 +30,8 @@ class DetailViewController: UIViewController {
         } else if filledHeartImageView.hidden == false {
             self.unlikePhoto()
         }
+        
+        Post.saveInBackground(postPhoto)
     }
     
     var postPhoto : Post!
