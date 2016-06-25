@@ -40,6 +40,7 @@ The following **additional** features are implemented:
 - [X] Banner will appear if username is already taken / password or username is incorrect 
 - [X] User can like a post directly on the feed (in addition to on the post details screen)
 - [X] User can add a short bio to their profile that will appear when others visit your profile page (There is an easter egg if users don't add a bio)
+- [X] App icon and launch screen
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
