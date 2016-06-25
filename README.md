@@ -28,21 +28,23 @@ The following **optional** features are implemented:
    - [X] Tapping on a post's username or profile photo goes to that user's profile page
 - [ ] User can comment on a post and see all comments for each post in the post details screen.
 - [X] User can like a post and see number of likes for each post in the post details screen.
-- [ ] Run your app on your phone and use the camera to take the photo
+- [X] Run your app on your phone and use the camera to take the photo
 
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- List anything else that you can get done to improve the app functionality!
 - [X] Will not allow an upload with no picture 
 - [X] Banner on the bottom of the Upload VC changes depending on whether or not there is an image or caption
 - [X] Split up login and signup VCs for clarity 
+- [X] Banner will appear if username is already taken / password or username is incorrect 
 - [X] User can like a post directly on the feed (in addition to on the post details screen)
+- [X] User can add a short bio to their profile that will appear when others visit your profile page (There is an easter egg if users don't add a bio)
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. How to efficiently prevent people who have already liked a photo from liking it again
+2. How to implement followers
 
 ## Video Walkthrough
 
@@ -50,14 +52,16 @@ Here's a walkthrough of implemented user stories:
 
 <img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-GIF created with [LiceCap](http://www.cockos.com/licecap/).
+Video created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Credits
 
 List an 3rd party libraries, icons, graphics, or other assets you used in your app.
 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
-
+- [Parse]
+- [ParseUI]
+- [MBProgressHUD]
 
 ## Notes
 

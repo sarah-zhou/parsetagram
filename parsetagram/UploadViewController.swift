@@ -135,7 +135,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func textViewDidEndEditing(textView: UITextView) {
         if textView.text.isEmpty {
-            textView.text = "Insert funny, witty, adorable, or meaningful caption here"
+            textView.text = "Funny, witty, adorable, or meaningful caption here"
             textView.textColor = UIColor.lightGrayColor()
             captionLabel.hidden = false
             shareLabel.hidden = true
