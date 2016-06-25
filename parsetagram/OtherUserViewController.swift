@@ -49,6 +49,12 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
         otherCollectionView.insertSubview(refreshControl, atIndex: 0)
         
         usernameLabel.text = user?.username
+        
+    //user!["bio"]
+        
+        //if user!["bio"] == "" {
+            //bioLabel.text = "Lol this person doesn't have a bio. I wonder how long it will take for them to notice that this is the default bio instead."
+        //}
         bioLabel.text = user?["bio"] as? String
         
         profPicImageView.layer.borderWidth = 1

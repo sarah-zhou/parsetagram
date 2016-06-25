@@ -95,19 +95,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 if let objects = objects {
                     self.posts = Post.postArray(objects)
                 
-                    for var post in self.posts {
-                        let img = post.obj!["media"] as! PFFile
-                        img.getDataInBackgroundWithBlock({ (data, error) in
-                            if let image = UIImage(data: data!) {
-                                print("successfully downloaded image")
-                                post.img = image
-                                self.photosTableView.reloadData()
-                            } else {
-                                print("error downloading image: " + error!.localizedDescription)
-                            }
-                            
-                        })
-                    }
                 }
             } else {
                 print(error?.localizedDescription)
@@ -135,19 +122,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     // Stop the loading indicator
                     self.loadingMoreView!.stopAnimating()
                     
-                    for var post in self.posts {
-                        let img = post.obj!["media"] as! PFFile
-                        img.getDataInBackgroundWithBlock({ (data, error) in
-                            if let image = UIImage(data: data!) {
-                                print("successfully downloaded image from infinite scroll")
-                                post.img = image
-                                self.photosTableView.reloadData()
-                            } else {
-                                print("error downloading image: " + error!.localizedDescription)
-                            }
-                            
-                        })
-                    }
                 }
             } else {
                 print(error?.localizedDescription)
@@ -198,8 +172,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         cell.filledHeartImageView.hidden = true
-        cell.photoView.image = post.img
+//        cell.photoView.image = post.img
+        cell.photoView.file = post.obj!["media"] as! PFFile
+        cell.photoView.loadInBackground()
 
+        
         return cell
         
     }

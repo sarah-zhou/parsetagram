@@ -578,18 +578,12 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ymw-US-Pfr">
-                                <rect key="frame" x="95" y="75" width="295" height="21"/>
+                                <rect key="frame" x="98" y="75" width="295" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Write a quick bio, so people can get to know you! " textAlignment="natural" minimumFontSize="17" id="gP8-M9-3L3">
-                                <rect key="frame" x="95" y="100" width="273" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="13"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="fLG-3d-Xy2">
                                 <rect key="frame" x="11" y="158" width="352" height="458"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -602,13 +596,13 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="currentUserPhotoCell" id="GTM-4g-ghS" customClass="currentUserPhotoCell" customModule="parsetagram" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="64" width="116" height="116"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="116" height="116"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="116" height="116"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Nwz-dY-j8p">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Nwz-dY-j8p" customClass="PFImageView">
                                                     <rect key="frame" x="0.0" y="0.0" width="116" height="116"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
@@ -622,6 +616,14 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Write a quick bio, so people can get to know you! " id="zg8-Kz-2yi">
+                                <rect key="frame" x="94" y="98" width="274" height="52"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="13"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -634,7 +636,7 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="bioTextField" destination="gP8-M9-3L3" id="CuZ-tK-TYA"/>
+                        <outlet property="bioTextView" destination="zg8-Kz-2yi" id="xEF-qh-EGK"/>
                         <outlet property="collectionView" destination="fLG-3d-Xy2" id="ZVo-Fk-syw"/>
                         <outlet property="flowLayout" destination="Lb9-c8-fr8" id="oZg-m4-WeL"/>
                         <outlet property="logOutButton" destination="wDO-aC-zmR" id="Ygu-ec-asW"/>

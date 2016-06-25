@@ -61,6 +61,7 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
                 if success {
                     print("new post saved")
                     MBProgressHUD.hideHUDForView(self.view, animated: true)
+                    self.initializeScreen()
                     self.tabBarController?.selectedIndex = 0
                 } else {
                     print(error?.localizedDescription)
@@ -72,8 +73,12 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initializeScreen()
+    }
+    
+    func initializeScreen() {
+        
         captionTextView.delegate = self
-
         captionTextView.text = "Funny, witty, adorable, or meaningful caption here"
         captionTextView.textColor = UIColor.lightGrayColor()
         
@@ -81,11 +86,11 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         shareLabel.hidden = true
         missingPhotoLabel.hidden = true
         
+        uploadImageView.image = nil
+        
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        
-        self.presentViewController(imagePicker, animated: true, completion: nil)
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UploadViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UploadViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil);

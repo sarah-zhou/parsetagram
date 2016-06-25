@@ -19,6 +19,12 @@ class Post: NSObject {
         self.obj = obj!
     }
     
+    var media : PFFile? {
+        get {
+            return self.obj!["media"] as? PFFile
+        }
+    }
+    
     /**
      Method to add a user post to Parse (uploading image file)
      

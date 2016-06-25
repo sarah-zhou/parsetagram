@@ -10,16 +10,15 @@ import UIKit
 import Parse
 import ParseUI
 
-class ProfileViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class ProfileViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var logOutButton: UIBarButtonItem!
     
     @IBOutlet weak var profPicImageView: PFImageView!
-    
+    @IBOutlet weak var bioTextView: UITextView!
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var bioTextField: UITextField!
 
     let imagePicker = UIImagePickerController()
     var user : PFUser?
@@ -48,11 +47,11 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         
         self.user = PFUser.currentUser()
         
-        self.loadDataFromNetwork()
+   //     self.loadDataFromNetwork()
         
         collectionView.dataSource = self
         collectionView.delegate = self
-        bioTextField.delegate = self
+        bioTextView.delegate = self
         imagePicker.delegate = self
         
         flowLayout.scrollDirection = .Vertical
@@ -68,7 +67,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         logOutButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Helvetica", size: 15.0)!], forState: UIControlState.Normal)
         
         if let bio = user!["bio"] as? String {
-            bioTextField.text = bio
+            bioTextView.text = bio
         }
         
         profPicImageView.layer.borderWidth = 1
@@ -107,20 +106,6 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
                     print(objects.count)
 
                     self.posts = Post.postArray(objects)
-                    for var post in self.posts {
-                        print("loop")
-                        let img = post.obj!["media"] as! PFFile
-                        img.getDataInBackgroundWithBlock({ (data, error) in
-                            if let image = UIImage(data: data!) {
-                                print("profile successfully downloaded image")
-                                post.img = image
-                                self.collectionView.reloadData()
-                            } else {
-                                print("error downloading image: " + error!.localizedDescription)
-                            }
-                            
-                        })
-                    }
                 }
             } else {
                 print(error?.localizedDescription)
@@ -139,19 +124,38 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         
         let post = posts[indexPath.row]
         
-        cell.postPhotoImageView.image = post.img
+        cell.postPhotoImageView.file = post.media
+        cell.postPhotoImageView.loadInBackground()
     
         return cell
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
         return true
     }
     
-    func textFieldDidEndEditing(textField: UITextField) {
-        user!["bio"] = bioTextField.text
-        user?.saveInBackground()
+    
+    func textViewDidBeginEditing(textView: UITextView) {
+        if textView.textColor == UIColor.lightGrayColor() {
+            textView.text = ""
+            textView.textColor = UIColor.darkGrayColor()
+        }
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Write a quick bio so people can get to know you!"
+            textView.textColor = UIColor.lightGrayColor()
+            user!["bio"] = ""
+            user?.saveInBackground()
+        } else {
+            user!["bio"] = bioTextView.text
+            user?.saveInBackground()
+        }
     }
 
     

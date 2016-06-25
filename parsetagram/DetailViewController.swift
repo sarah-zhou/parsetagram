@@ -39,7 +39,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         photoImageView.image = postPhoto.img
         
         let caption = postPhoto.obj!["caption"] as? String
