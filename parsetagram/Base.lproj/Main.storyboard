@@ -383,6 +383,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default" id="JJW-jv-nJK">
+                                <rect key="frame" x="2" y="69" width="39" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Fi5-jR-XZx">
                                 <rect key="frame" x="49" y="78" width="320" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -390,6 +394,14 @@
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="g6q-wV-feV" userLabel="Username Button">
+                                <rect key="frame" x="49" y="78" width="320" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                                <connections>
+                                    <segue destination="0eE-iT-L2a" kind="push" identifier="showUserProfile" id="Lcm-vP-e2I"/>
+                                </connections>
+                            </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FilledHeart" id="xQb-pp-Pj4">
                                 <rect key="frame" x="8" y="493" width="25" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -432,17 +444,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="7b9-LI-Ucw" userLabel="Profile Picture" customClass="PFImageView">
-                                <rect key="frame" x="3" y="69" width="39" height="39"/>
+                                <rect key="frame" x="2" y="69" width="39" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="g6q-wV-feV" userLabel="Username Button">
-                                <rect key="frame" x="49" y="78" width="320" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
-                                <connections>
-                                    <segue destination="0eE-iT-L2a" kind="push" identifier="showUserProfile" id="Lcm-vP-e2I"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -451,6 +455,7 @@
                     <connections>
                         <outlet property="captionLabel" destination="IKM-0w-KXn" id="PDL-Sd-jDv"/>
                         <outlet property="filledHeartImageView" destination="xQb-pp-Pj4" id="KH6-cV-6lM"/>
+                        <outlet property="noProfPicImageView" destination="JJW-jv-nJK" id="iqE-Tg-ylB"/>
                         <outlet property="numLikesImageView" destination="M9z-tj-usb" id="K1Q-tW-sGK"/>
                         <outlet property="numLikesLabel" destination="ySV-5c-ld8" id="kE2-Kx-vvd"/>
                         <outlet property="photoImageView" destination="ygU-S3-x1m" id="Rf4-Va-Alr"/>
@@ -471,24 +476,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="wXf-zb-k7K" userLabel="Profile Picture" customClass="PFImageView">
+                            <imageView userInteractionEnabled="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default" id="VmJ-u6-8PV">
                                 <rect key="frame" x="11" y="76" width="75" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TdU-pp-7Qv">
-                                <rect key="frame" x="94" y="76" width="295" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sVP-FU-mdC">
-                                <rect key="frame" x="95" y="100" width="273" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="13"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="dOq-nd-a7h">
                                 <rect key="frame" x="11" y="158" width="352" height="462"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -520,6 +511,24 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="wXf-zb-k7K" userLabel="Profile Picture" customClass="PFImageView">
+                                <rect key="frame" x="11" y="76" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TdU-pp-7Qv">
+                                <rect key="frame" x="94" y="76" width="295" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sVP-FU-mdC">
+                                <rect key="frame" x="95" y="100" width="273" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-UltraLight" family="Apple SD Gothic Neo" pointSize="13"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -527,6 +536,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="bioLabel" destination="sVP-FU-mdC" id="SKR-2j-Eno"/>
+                        <outlet property="noProfPicImageView" destination="VmJ-u6-8PV" id="2bx-mz-v2S"/>
                         <outlet property="otherCollectionView" destination="dOq-nd-a7h" id="Ihk-81-kGt"/>
                         <outlet property="otherFlowLayout" destination="bb6-nW-Q7J" id="tW1-pW-szF"/>
                         <outlet property="profPicImageView" destination="wXf-zb-k7K" id="tM8-kd-5zE"/>
@@ -565,6 +575,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default" id="MUF-Qs-NJn">
+                                <rect key="frame" x="11" y="75" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="U25-B4-xnx" userLabel="Profile Picture" customClass="PFImageView">
                                 <rect key="frame" x="11" y="75" width="75" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -640,6 +654,7 @@
                         <outlet property="collectionView" destination="fLG-3d-Xy2" id="ZVo-Fk-syw"/>
                         <outlet property="flowLayout" destination="Lb9-c8-fr8" id="oZg-m4-WeL"/>
                         <outlet property="logOutButton" destination="wDO-aC-zmR" id="Ygu-ec-asW"/>
+                        <outlet property="noProfPicImageView" destination="MUF-Qs-NJn" id="Ona-1M-CnH"/>
                         <outlet property="profPicImageView" destination="U25-B4-xnx" id="ZG3-6v-89t"/>
                         <outlet property="usernameLabel" destination="Ymw-US-Pfr" id="1X6-to-lSQ"/>
                         <segue destination="BYZ-38-t0r" kind="modal" identifier="logOut" id="fmL-6D-u9i"/>
@@ -713,6 +728,7 @@
     <resources>
         <image name="Background" width="1366" height="768"/>
         <image name="Camera" width="512" height="512"/>
+        <image name="Default" width="128" height="128"/>
         <image name="FilledHeart" width="626" height="626"/>
         <image name="Home" width="25" height="25"/>
         <image name="Like" width="256" height="256"/>
@@ -723,7 +739,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="Gbk-kE-iG4"/>
         <segue reference="fmL-6D-u9i"/>
-        <segue reference="4vk-MI-KK2"/>
+        <segue reference="Bwe-Ne-91L"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
 </document>

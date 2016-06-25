@@ -16,6 +16,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var logOutButton: UIBarButtonItem!
     
+    @IBOutlet weak var noProfPicImageView: UIImageView!
     @IBOutlet weak var profPicImageView: PFImageView!
     @IBOutlet weak var bioTextView: UITextView!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -62,14 +63,20 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         
         logOutButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Helvetica", size: 15.0)!], forState: UIControlState.Normal)
         
-        if let bio = user!["bio"] as? String {
-            if bio == "" {
-                bioTextView.text = "Write a quick bio so people can get to know you!"
-                bioTextView.textColor = UIColor.lightGrayColor()
-            }
+        let bio = user!["bio"] as? String
+        if bio == "" {
+            bioTextView.text = "Write a quick bio so people can get to know you!"
+            bioTextView.textColor = UIColor.lightGrayColor()
+        } else {
             bioTextView.text = bio
         }
         
+        noProfPicImageView.layer.borderWidth = 1
+        noProfPicImageView.layer.masksToBounds = false
+        noProfPicImageView.layer.borderColor = UIColor.blackColor().CGColor
+        noProfPicImageView.layer.cornerRadius = noProfPicImageView.frame.height/2
+        noProfPicImageView.clipsToBounds = true
+
         profPicImageView.layer.borderWidth = 1
         profPicImageView.layer.masksToBounds = false
         profPicImageView.layer.borderColor = UIColor.blackColor().CGColor

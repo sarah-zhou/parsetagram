@@ -20,6 +20,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var captionLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var profPicImageView: PFImageView!
+    @IBOutlet weak var noProfPicImageView: UIImageView!
     
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
@@ -40,7 +41,6 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        photoImageView.image = postPhoto.img
         photoImageView.file = postPhoto.media
         photoImageView.loadInBackground()
         
@@ -67,6 +67,12 @@ class DetailViewController: UIViewController {
         }
         
         filledHeartImageView.hidden = true
+        
+        noProfPicImageView.layer.borderWidth = 1
+        noProfPicImageView.layer.masksToBounds = false
+        noProfPicImageView.layer.borderColor = UIColor.blackColor().CGColor
+        noProfPicImageView.layer.cornerRadius = profPicImageView.frame.height/2
+        noProfPicImageView.clipsToBounds = true
         
         profPicImageView.layer.borderWidth = 1
         profPicImageView.layer.masksToBounds = false

@@ -74,6 +74,9 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         super.viewDidLoad()
         
         initializeScreen()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UploadViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil);
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UploadViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil);
     }
     
     func initializeScreen() {
@@ -91,9 +94,6 @@ class UploadViewController: UIViewController, UIImagePickerControllerDelegate, U
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UploadViewController.keyboardWillShow(_:)), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(UploadViewController.keyboardWillHide(_:)), name:UIKeyboardWillHideNotification, object: nil);
     }
 
     override func didReceiveMemoryWarning() {

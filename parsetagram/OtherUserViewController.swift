@@ -18,6 +18,7 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
     @IBOutlet weak var otherCollectionView: UICollectionView!
     @IBOutlet weak var otherFlowLayout: UICollectionViewFlowLayout!
     @IBOutlet weak var profPicImageView: PFImageView!
+    @IBOutlet weak var noProfPicImageView: UIImageView!
     
     @IBAction func back(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
@@ -45,7 +46,18 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
     
         usernameLabel.text = user?.username
         
-        bioLabel.text = user!["bio"] as? String
+        let bio = user!["bio"] as? String
+        if bio == "" {
+            bioLabel.text = "Lol this user did not set a bio. I wonder how long it will take for them to find out that this is the default bio if you do not set one."
+        } else {
+            bioLabel.text = bio
+        }
+        
+        noProfPicImageView.layer.borderWidth = 1
+        noProfPicImageView.layer.masksToBounds = false
+        noProfPicImageView.layer.borderColor = UIColor.blackColor().CGColor
+        noProfPicImageView.layer.cornerRadius = noProfPicImageView.frame.height/2
+        noProfPicImageView.clipsToBounds = true
         
         profPicImageView.layer.borderWidth = 1
         profPicImageView.layer.masksToBounds = false
