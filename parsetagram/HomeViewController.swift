@@ -91,10 +91,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // fetch data asynchronously
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
-                print("successfully retrieved things")
                 if let objects = objects {
                     self.posts = Post.postArray(objects)
-                
                 }
             } else {
                 print(error?.localizedDescription)
@@ -112,7 +110,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         // fetch data asynchronously
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
-                print("successfully retrieved things")
                 if let objects = objects {
                     self.posts.appendContentsOf(Post.postArray(objects))
                     
@@ -172,10 +169,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         cell.filledHeartImageView.hidden = true
-//        cell.photoView.image = post.img
+        
         cell.photoView.file = post.obj!["media"] as! PFFile
         cell.photoView.loadInBackground()
-
         
         return cell
         

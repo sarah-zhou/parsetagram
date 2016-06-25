@@ -12,7 +12,7 @@ import ParseUI
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var photoImageView: PFImageView!
     @IBOutlet weak var filledHeartImageView: UIImageView!
     @IBOutlet weak var numLikesImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
@@ -40,7 +40,9 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        photoImageView.image = postPhoto.img
+//        photoImageView.image = postPhoto.img
+        photoImageView.file = postPhoto.media
+        photoImageView.loadInBackground()
         
         let caption = postPhoto.obj!["caption"] as? String
         let timestamp = postPhoto.obj!["date"] as? String

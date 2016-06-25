@@ -42,20 +42,10 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
         otherFlowLayout.minimumLineSpacing = 2
         otherFlowLayout.minimumInteritemSpacing = 2
         otherFlowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0)
-        
-        // Initialize a UIRefreshControl
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), forControlEvents: UIControlEvents.ValueChanged)
-        otherCollectionView.insertSubview(refreshControl, atIndex: 0)
-        
+    
         usernameLabel.text = user?.username
         
-    //user!["bio"]
-        
-        //if user!["bio"] == "" {
-            //bioLabel.text = "Lol this person doesn't have a bio. I wonder how long it will take for them to notice that this is the default bio instead."
-        //}
-        bioLabel.text = user?["bio"] as? String
+        bioLabel.text = user!["bio"] as? String
         
         profPicImageView.layer.borderWidth = 1
         profPicImageView.layer.masksToBounds = false
@@ -85,40 +75,12 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
         query.findObjectsInBackgroundWithBlock { (objects: [PFObject]?, error: NSError?) -> Void in
             if error == nil {
                 if let objects = objects {
-                    print("other user successfully retrieved things")
-                    print(objects.count)
-                    
                     self.posts = Post.postArray(objects)
-                    for var post in self.posts {
-                        let img = post.obj!["media"] as! PFFile
-                        img.getDataInBackgroundWithBlock({ (data, error) in
-                            if let image = UIImage(data: data!) {
-                                print("profile successfully downloaded image")
-                                post.img = image
-                                self.otherCollectionView.reloadData()
-                            } else {
-                                print("error downloading image: " + error!.localizedDescription)
-                            }
-                            
-                        })
-                    }
-                }
-            } else {
+                } else {
                 print(error?.localizedDescription)
+                }
             }
         }
-    }
-
-    // Makes a network request to get updated data
-    // Updates the tableView with the new data
-    // Hides the RefreshControl
-    func refreshControlAction(refreshControl: UIRefreshControl) {
-        
-        self.loadDataFromNetwork()
-        
-        // Tell the refreshControl to stop spinning
-        refreshControl.endRefreshing()
-        
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -130,9 +92,8 @@ class OtherUserViewController: UIViewController, UICollectionViewDataSource, UIC
         
         let post = posts[indexPath.row]
         
-        if post.img != nil {
-            cell.postPhotoImageView.image = post.img
-        }
+        cell.postPhotoImageView.file = post.obj!["media"] as! PFFile
+        cell.postPhotoImageView.loadInBackground()
         
         return cell
     }

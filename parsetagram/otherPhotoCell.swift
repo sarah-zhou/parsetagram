@@ -7,8 +7,10 @@
 //
 
 import UIKit
+import Parse
+import ParseUI
 
 class otherPhotoCell: UICollectionViewCell {
     
-    @IBOutlet weak var postPhotoImageView: UIImageView!
+    @IBOutlet weak var postPhotoImageView: PFImageView!
 }

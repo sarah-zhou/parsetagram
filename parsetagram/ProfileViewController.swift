@@ -47,8 +47,6 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         
         self.user = PFUser.currentUser()
         
-   //     self.loadDataFromNetwork()
-        
         collectionView.dataSource = self
         collectionView.delegate = self
         bioTextView.delegate = self
@@ -62,11 +60,13 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
         let user = PFUser.currentUser()
         usernameLabel.text = user!.username
         
-        //self.navigationController!.navigationBar.topItem?.title = user?.username
-        //self.navigationController!.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Helvetica-Bold", size: 17.0)!]
         logOutButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "Helvetica", size: 15.0)!], forState: UIControlState.Normal)
         
         if let bio = user!["bio"] as? String {
+            if bio == "" {
+                bioTextView.text = "Write a quick bio so people can get to know you!"
+                bioTextView.textColor = UIColor.lightGrayColor()
+            }
             bioTextView.text = bio
         }
         
@@ -80,6 +80,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
             profPicImageView.file = pic
             profPicImageView.loadInBackground()
         }
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -162,7 +163,7 @@ class ProfileViewController: UIViewController, UICollectionViewDataSource, UICol
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
             
-            let size = CGSize(width: 100.0, height: 100.0)
+            let size = CGSize(width: 300.0, height: 300.0)
             let resizedImage = resize(pickedImage, newSize: size)
             
             profPicImageView.image = resizedImage
